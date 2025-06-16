@@ -2,7 +2,7 @@
 
 Backend del calendario de tareas editables
 
-## Dev
+## DEVELOPER
 
 1. Instalar dependencias `npm install`
 2. Clonar el archivo `.env.template`y renombrarlo a `.env`
