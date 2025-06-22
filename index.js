@@ -1,3 +1,6 @@
+// Importar path
+const path = require("path");
+
 // Configuracion Básica de Express
 const express = require("express");
 require("dotenv").config();
@@ -39,6 +42,15 @@ app.use("/api/auth", require("./routes/auth"));
 
 // TODO: CURD: Eventos para actualizar, insertar , poder borrarlos etc, toda la informacion o todos los procedimientos relacionados al manejo de eventos en nuestro calendario
 app.use("/api/events", require("./routes/events"));
+
+//  cualquier petición que no sean de arriba, lo lleve a servir el contenido que tenemos en el index.html.
+app.use("*", (req, res) => {
+  // la responde .senFile y le voy a mandar el path.join aue nos permie unir el __dirname que es apuntar donde esta corriendo nuestra app
+  //  y adjuntarle el public index.html, entonces cualquier ruta que no sean las que estan definidas arriba, desde el directorio publico, /routes/auth o
+  // routes/events si no son estas entonces va a servor el contenido estatico que tenemos en public/index.html
+  //  y ahi react router toma el control y lo desplega correctamente
+  res.sendFile(path.join(__dirname, "public/index.html"));
+});
 
 // Escuchar peticiones
 app.listen(process.env.PORT, () => {
