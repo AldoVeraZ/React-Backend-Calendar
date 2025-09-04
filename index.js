@@ -52,10 +52,12 @@ app.use("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public/index.html"));
 });
 
+// Escuchar peticiones con fallback para desarrollo local
+const PORT = process.env.PORT || 4000;
 // Escuchar peticiones
-app.listen(process.env.PORT, () => {
+app.listen(PORT, () => {
   // este callback se ejecuta cuando el servidor de express este arriba
-  console.log(`Servidor corriendo en puerto ${process.env.PORT}`);
+  console.log(`Servidor corriendo en puerto ${PORT}`);
 });
 
 // Ya tengo un servidor que escucha peticiones get que se hagan al Root, en este caso sería el /
